@@ -13,40 +13,49 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
-import Radium from 'radium';
 
-const styles = custTheme => ({
+const formStyle = {
+	borderBottom: '1px solid #680000',
+	':focus': {
+		borderBottom: '1px solid #680000'
+	}
+};
+
+const styles = theme => ({
 	main: {
 		width: 'auto',
 		display: 'block', // Fix IE 11 issue.
-		marginLeft: custTheme.spacing.unit * 3,
-		marginRight: custTheme.spacing.unit * 3,
-		[custTheme.breakpoints.up(400 + custTheme.spacing.unit * 3 * 2)]: {
+		marginLeft: theme.spacing.unit * 3,
+		marginRight: theme.spacing.unit * 3,
+		[theme.breakpoints.up(400 + theme.spacing.unit * 3 * 2)]: {
 			width: 400,
 			marginLeft: 'auto',
 			marginRight: 'auto'
 		}
 	},
 	paper: {
-		marginTop: custTheme.spacing.unit * 8,
+		marginTop: theme.spacing.unit * 8,
 		display: 'flex',
 		flexDirection: 'column',
 		alignItems: 'center',
-		padding: `${custTheme.spacing.unit * 2}px ${custTheme.spacing.unit *
-			3}px ${custTheme.spacing.unit * 3}px`
+		padding: `${theme.spacing.unit * 2}px ${theme.spacing.unit * 3}px ${theme
+			.spacing.unit * 3}px`
 	},
 	avatar: {
-		margin: custTheme.spacing.unit,
+		margin: theme.spacing.unit,
 		backgroundColor: '#680000'
 	},
 	form: {
 		width: '100%', // Fix IE 11 issue.
-		marginTop: custTheme.spacing.unit
+		marginTop: theme.spacing.unit
 	},
 	submit: {
-		marginTop: custTheme.spacing.unit * 3,
+		marginTop: theme.spacing.unit * 3,
 		backgroundColor: '#680000',
 		color: 'white'
+	},
+	underline: {
+		borderBottom: '1px solid #680000'
 	}
 });
 
@@ -65,17 +74,24 @@ function SignIn(props) {
 				</Typography>
 				<form className={classes.form}>
 					<FormControl
-						color='#680000'
+						//color='#680000'
 						className={classes.InputLabel}
 						margin='normal'
 						required
 						fullWidth>
 						<InputLabel htmlFor='email'>Email Address</InputLabel>
-						<Input id='email' name='email' autoComplete='email' autoFocus />
+						<Input
+							style={formStyle}
+							id='email'
+							name='email'
+							autoComplete='email'
+							autoFocus
+						/>
 					</FormControl>
 					<FormControl margin='normal' required fullWidth>
 						<InputLabel htmlFor='password'>Password</InputLabel>
 						<Input
+							classes={{ underline: classes.underline }}
 							name='password'
 							type='password'
 							id='password'
@@ -99,4 +115,4 @@ SignIn.propTypes = {
 	classes: PropTypes.object.isRequired
 };
 
-export default Radium(withStyles(styles)(SignIn));
+export default withStyles(styles)(SignIn);
