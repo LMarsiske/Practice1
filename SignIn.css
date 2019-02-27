@@ -41,12 +41,10 @@ h1 {
 #tag:focus {
 	border: 2px solid #680000;
 	border-radius: 10px;
-	width: 95%;
 }
 
 #tag:hover {
 	border-bottom: 3px solid #680000;
-	width: 95%;
 }
 
 #foo {
@@ -67,7 +65,7 @@ h1 {
 	color: white;
 }
 
-placeholder {
+::placeholder {
 	color: #680000;
 	font-size: 110%;
 }
